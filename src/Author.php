@@ -82,6 +82,12 @@
             $GLOBALS['DB']->exec("DELETE FROM authors *;");
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM author WHERE id = {$this->getAuthorId()};");
+            $GLOBALS['DB']->exec("DELETE FROM books_authors WHERE author_id = {$this->getAuthorId()};");
+        }
+
 
     }
 ?>

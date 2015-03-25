@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Authors for {{ book.getTitle() }}</title>
+</head>
+<body>
+    <h1>{{ book.getTitle() }}</h1>
+
+    {% if authors is not empty %}
+        <p>Here are the authors for this Book:</p>
+        <ul>
+            {% for author in authors %}
+                <li>
+                    <form action="/authors/{{ author.getAuthorId }}" method="post">
+                        {{ author.getName }}
+                      <input name="_method" type="hidden" value="delete" class="float-right">
+
+                      <button type="submit">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h4>Add an author to this Book:</h4>
+
+    <form action='/add_authors' method='post'>
+        <input id="book_id" name="book_id" type="hidden" value="{{ book.getBookId }}">
+        <input type="text" name="author_name" id="author_name">
+        <button type='submit'>Add author</button>
+    </form>
+
+    <p><a href="/books/{{ book.getBookId }}/edit">Edit this Book</a></p>
+
+    <p><a href='/'>Home</a></p>
+
+</body>
+</html>

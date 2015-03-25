@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='css/styles.css'>
+        <title>Catalog</title>
+    </head>
+    <body>
+        <div class='container'>
+            <h1>Library catalog</h1>
+
+            {% if books is not empty %}
+        <p>Complete Catalog</p>
+        <ul>
+            {% for book in books %}
+                <li><a href = '/books/{{book.getBookId}}'>{{ book.getTitle }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h4>Add Book to collection:</h4>
+
+    <form action='/add_books' method='post'>
+        <label for='book_title'>Title</label>
+        <input type='text' name='book_title' id='book_title'>
+        <button type='submit'>Add Book</button>
+    </form>
+
+
+        </div>
+
+    </body>
+</html>

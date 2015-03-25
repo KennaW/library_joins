@@ -82,7 +82,17 @@
             $GLOBALS['DB']->exec("DELETE FROM books *;");
         }
 
+        function update($new_title)
+        {
+            $GLOBALS['DB']->exec("UPDATE books SET title = '{$new_title}' WHERE id = {$this->getBookId()};");
+            $this->setTitle($new_title);
+        }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM books WHERE id = {$this->getBookId()};");
+            $GLOBALS['DB']->exec("DELETE FROM books_authors WHERE book_id = {$this->getBookId()};");
+        }
 
 
 
