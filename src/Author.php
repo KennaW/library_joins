@@ -44,7 +44,7 @@
 
         function getBooks()
         {
-            $returned_results = $GLOBALS['DB']->query("SELECT books.* FROM authors JOIN books_authors ON (authors.id = books_authors.author_id) JOIN authors ON (books_authors.book_id = books.id) WHERE authors.id = {$this->getAuthorId()};");
+            $returned_results = $GLOBALS['DB']->query("SELECT books.* FROM authors JOIN books_authors ON (authors.id = books_authors.author_id) JOIN books ON (books_authors.book_id = books.id) WHERE authors.id = {$this->getAuthorId()};");
             $books = [];
             foreach($returned_results as $result) {
                 $title = $result['title'];
